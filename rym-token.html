@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rym-token &mdash; rym  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="rym-lpath" href="rym-lpath.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            rym
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rym-alias.html"><cite>rym-alias</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rym-lpath.html"><cite>rym-lpath</cite></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><cite>rym-token</cite></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-rym.token.tokenizer">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tokenize-strings">Tokenize Strings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#type-handlers">Type Handlers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subtypes">Subtypes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rym.token">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rym.token.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.token.TokenSpec"><code class="docutils literal notranslate"><span class="pre">TokenSpec</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rym.token.TokenSpec.handle"><code class="docutils literal notranslate"><span class="pre">TokenSpec.handle</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.token.TokenSpec.pattern"><code class="docutils literal notranslate"><span class="pre">TokenSpec.pattern</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.token.TokenSpec.subtype"><code class="docutils literal notranslate"><span class="pre">TokenSpec.subtype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.token.TokenSpec.type"><code class="docutils literal notranslate"><span class="pre">TokenSpec.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.token.tokenize"><code class="docutils literal notranslate"><span class="pre">tokenize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rym</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><cite>rym-token</cite></li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/muppetjones/rym-py/blob/main/source/rym-token.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rym-token">
+<h1><cite>rym-token</cite><a class="headerlink" href="#rym-token" title="Link to this heading"></a></h1>
+<p>The <cite>token</cite> module provides string tokenization.</p>
+<section id="module-rym.token.tokenizer">
+<span id="usage"></span><h2>Usage<a class="headerlink" href="#module-rym.token.tokenizer" title="Link to this heading"></a></h2>
+<section id="tokenize-strings">
+<h3>Tokenize Strings<a class="headerlink" href="#tokenize-strings" title="Link to this heading"></a></h3>
+<p>The <cite>tokenize</cite> function is a generator that scans a string for certain
+patterns and returns matched substrings with their location.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.token</span> <span class="kn">import</span> <span class="n">tokenize</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;42 is an integer; 2023-10-30T21:30:00Z is a date string&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+<span class="go">[Token(type=&#39;INTEGER&#39;, value=42, line=0, column=0), Token(type=&#39;WORD&#39;, value=&#39;is&#39;, line=0, column=3), Token(type=&#39;WORD&#39;, value=&#39;an&#39;, line=0, column=6), Token(type=&#39;WORD&#39;, value=&#39;integer&#39;, line=0, column=9), Token(type=&#39;PUNCTUATION&#39;, value=&#39;;&#39;, line=0, column=16), Token(type=&#39;TIMESTAMP&#39;, value=datetime.datetime(2023, 10, 30, 21, 30, tzinfo=datetime.timezone.utc), line=0, column=18), Token(type=&#39;WORD&#39;, value=&#39;is&#39;, line=0, column=39), Token(type=&#39;WORD&#39;, value=&#39;a&#39;, line=0, column=42), Token(type=&#39;WORD&#39;, value=&#39;date&#39;, line=0, column=44), Token(type=&#39;WORD&#39;, value=&#39;string&#39;, line=0, column=49)]</span>
+</pre></div>
+</div>
+<p>While <cite>rym.token</cite> provides several token specifications, you may also
+provide your own. Patterns are regex strings, and matching is case sensitive.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.token</span> <span class="kn">import</span> <span class="n">TokenSpec</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spec</span> <span class="o">=</span> <span class="n">TokenSpec</span><span class="p">(</span><span class="s2">&quot;BOOL&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;True|False&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I prefer True/False over multiple choice&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">[</span><span class="n">spec</span><span class="p">]))</span>
+<span class="go">[Token(type=&#39;BOOL&#39;, value=&#39;True&#39;, line=0, column=9), Token(type=&#39;BOOL&#39;, value=&#39;False&#39;, line=0, column=14)]</span>
+</pre></div>
+</div>
+<section id="type-handlers">
+<h4>Type Handlers<a class="headerlink" href="#type-handlers" title="Link to this heading"></a></h4>
+<p>You may also provide a type handler to customize the final value. This
+feature should be used with care as it may prevent recreation of the
+input text from the tokens. Type handlers are included in a few of the
+included spec: <cite>integer</cite>, <cite>number</cite>, <cite>timestamp</cite>, <cite>date</cite>, and <cite>time</cite>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">spec</span> <span class="o">=</span> <span class="n">TokenSpec</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;BOOL&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;True|False&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">[</span><span class="n">spec</span><span class="p">]))</span>
+<span class="go">[Token(type=&#39;BOOL&#39;, value=True, line=0, column=9), Token(type=&#39;BOOL&#39;, value=False, line=0, column=14)]</span>
+</pre></div>
+</div>
+</section>
+<section id="subtypes">
+<h4>Subtypes<a class="headerlink" href="#subtypes" title="Link to this heading"></a></h4>
+<p>You may also define subtypes for a type specification. These are evaluated prior
+to execution of a type handler and are case-insensitive.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.token.tokenspec</span> <span class="kn">import</span> <span class="n">build_subtype_assignment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subtypes</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s1">&#39;TRUE&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="p">)),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s1">&#39;FALSE&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;false&#39;</span><span class="p">,)),</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subtype</span> <span class="o">=</span> <span class="n">build_subtype_assignment</span><span class="p">(</span><span class="n">subtypes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spec</span> <span class="o">=</span> <span class="n">TokenSpec</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;BOOL&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">&quot;True|False&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">subtype</span><span class="o">=</span><span class="n">subtype</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">[</span><span class="n">spec</span><span class="p">]))</span>
+<span class="go">[Token(type=&#39;TRUE&#39;, value=True, line=0, column=9), Token(type=&#39;FALSE&#39;, value=False, line=0, column=14)]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">-</span></code></p>
+</div>
+</section>
+</section>
+</section>
+<section id="module-rym.token">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-rym.token" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.token.Token">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.token.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.token.Token" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.token.TokenSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.token.</span></span><span class="sig-name descname"><span class="pre">TokenSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.token.TokenSpec" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="rym.token.TokenSpec.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rym.token.TokenSpec.handle" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.token.TokenSpec.pattern">
+<span class="sig-name descname"><span class="pre">pattern</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#rym.token.TokenSpec.pattern" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.token.TokenSpec.subtype">
+<span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rym.token.TokenSpec.subtype" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.token.TokenSpec.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#rym.token.TokenSpec.type" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.token.tokenize">
+<span class="sig-prename descclassname"><span class="pre">rym.token.</span></span><span class="sig-name descname"><span class="pre">tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#rym.token.TokenSpec" title="rym.token.structures.TokenSpec"><span class="pre">TokenSpec</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rym.token.Token" title="rym.token.structures.Token"><span class="pre">Token</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.token.tokenize" title="Link to this definition"></a></dt>
+<dd><p>Given a string, identify contextual tokens.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rym-lpath.html" class="btn btn-neutral float-left" title="rym-lpath" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Stephen Bush.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

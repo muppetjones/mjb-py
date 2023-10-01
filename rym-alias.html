@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rym-alias &mdash; rym  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="rym-lpath" href="rym-lpath.html" />
+    <link rel="prev" title="Welcome to rym-py’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            rym
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><cite>rym-alias</cite></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-rym.alias._alias">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-alias">Create an Alias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specify-transformations">Specify Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-an-aliasresolver-to-manage-multiple-aliases">Use an AliasResolver to Manage Multiple Aliases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rym.alias">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.Alias"><code class="docutils literal notranslate"><span class="pre">Alias</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.identity"><code class="docutils literal notranslate"><span class="pre">Alias.identity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.aliases"><code class="docutils literal notranslate"><span class="pre">Alias.aliases</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.transforms"><code class="docutils literal notranslate"><span class="pre">Alias.transforms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.add_alias"><code class="docutils literal notranslate"><span class="pre">Alias.add_alias()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.add_transform"><code class="docutils literal notranslate"><span class="pre">Alias.add_transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.all_names"><code class="docutils literal notranslate"><span class="pre">Alias.all_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.identify"><code class="docutils literal notranslate"><span class="pre">Alias.identify()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Alias.set_transforms"><code class="docutils literal notranslate"><span class="pre">Alias.set_transforms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.AliasResolver"><code class="docutils literal notranslate"><span class="pre">AliasResolver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.AliasResolver.add"><code class="docutils literal notranslate"><span class="pre">AliasResolver.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.AliasResolver.build"><code class="docutils literal notranslate"><span class="pre">AliasResolver.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.AliasResolver.find_collisions"><code class="docutils literal notranslate"><span class="pre">AliasResolver.find_collisions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.AliasResolver.identify"><code class="docutils literal notranslate"><span class="pre">AliasResolver.identify()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.Coercer"><code class="docutils literal notranslate"><span class="pre">Coercer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Coercer.coerce"><code class="docutils literal notranslate"><span class="pre">Coercer.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Coercer.explicit"><code class="docutils literal notranslate"><span class="pre">Coercer.explicit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.Coercer.implicit"><code class="docutils literal notranslate"><span class="pre">Coercer.implicit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.CoercionError"><code class="docutils literal notranslate"><span class="pre">CoercionError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.FrozenAlias"><code class="docutils literal notranslate"><span class="pre">FrozenAlias</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rym.alias.FrozenAlias.all_names"><code class="docutils literal notranslate"><span class="pre">FrozenAlias.all_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.InvalidConverterError"><code class="docutils literal notranslate"><span class="pre">InvalidConverterError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.coerce_explicit"><code class="docutils literal notranslate"><span class="pre">coerce_explicit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.coerce_implicit"><code class="docutils literal notranslate"><span class="pre">coerce_implicit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.get_default_coercer"><code class="docutils literal notranslate"><span class="pre">get_default_coercer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.resolve_aliases"><code class="docutils literal notranslate"><span class="pre">resolve_aliases()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.resolve_type"><code class="docutils literal notranslate"><span class="pre">resolve_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.resolve_variations"><code class="docutils literal notranslate"><span class="pre">resolve_variations()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rym.alias.safesorted"><code class="docutils literal notranslate"><span class="pre">safesorted()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rym-lpath.html"><cite>rym-lpath</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rym-token.html"><cite>rym-token</cite></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rym</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><cite>rym-alias</cite></li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/muppetjones/rym-py/blob/main/source/rym-alias.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rym-alias">
+<h1><cite>rym-alias</cite><a class="headerlink" href="#rym-alias" title="Link to this heading"></a></h1>
+<p>The <cite>alias</cite> module provides name wranging functionality.</p>
+<p>IMO, far too many software projects are fragile or backwards incompatible
+due to trivial name changes, such as “prod”, “PROD”, or “production”.
+These name variations may be due to different developers or different
+data sources – it shouldn’t matter.</p>
+<p>We could setup some AI service with NLP, but that’s silly. We want things
+easier, not magic. We want to be explicit about the things we alias so
+that our users do not have to be.</p>
+<section id="module-rym.alias._alias">
+<span id="usage"></span><h2>Usage<a class="headerlink" href="#module-rym.alias._alias" title="Link to this heading"></a></h2>
+<section id="create-an-alias">
+<h3>Create an Alias<a class="headerlink" href="#create-an-alias" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.alias</span> <span class="kn">import</span> <span class="n">Alias</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Alias</span><span class="p">(</span><span class="s1">&#39;prd&#39;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prod&#39;</span><span class="p">,</span> <span class="s1">&#39;production&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;prod&#39;</span><span class="p">)</span>
+<span class="go">&#39;prd&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;PROD&#39;</span><span class="p">)</span>
+<span class="go">&#39;prd&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identity</span>
+<span class="go">&#39;prd&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">all_names</span><span class="p">()</span>
+<span class="go">[&#39;PRD&#39;, &#39;PROD&#39;, &#39;PRODUCTION&#39;, &#39;prd&#39;, &#39;prod&#39;, &#39;production&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="specify-transformations">
+<h3>Specify Transformations<a class="headerlink" href="#specify-transformations" title="Link to this heading"></a></h3>
+<p>Upper and lower case transformations are performed by default, but additional
+transformations may be provided, too.</p>
+<p>&gt; Note: A <cite>lambda</cite> isn’t needed in this example as <cite>snakecase</cite> matches the
+&gt; expected <cite>Callable[[str], str]</cite> signature already.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.alias</span> <span class="kn">import</span> <span class="n">Alias</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">stringcase</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Alias</span><span class="p">(</span><span class="s1">&#39;fooBar&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="n">transforms</span><span class="o">=</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sc</span><span class="o">.</span><span class="n">snakecase</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;fooBar&#39;</span><span class="p">)</span>
+<span class="go">&#39;fooBar&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;foo_bar&#39;</span><span class="p">)</span>
+<span class="go">&#39;fooBar&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">all_names</span><span class="p">()</span>
+<span class="go">[&#39;fooBar&#39;, &#39;foo_bar&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="use-an-aliasresolver-to-manage-multiple-aliases">
+<span id="module-rym.alias._aliasresolver"></span><h3>Use an AliasResolver to Manage Multiple Aliases<a class="headerlink" href="#use-an-aliasresolver-to-manage-multiple-aliases" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">rym.alias</span> <span class="kn">import</span> <span class="n">AliasResolver</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">stringcase</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">AliasResolver</span><span class="o">.</span><span class="n">build</span><span class="p">(</span>
+<span class="gp">... </span>  <span class="n">prd</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;prod&#39;</span><span class="p">],</span>
+<span class="gp">... </span>  <span class="n">dev</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;develop&#39;</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+<span class="gp">... </span>  <span class="n">alp</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
+<span class="gp">... </span>  <span class="n">transforms</span><span class="o">=</span><span class="p">[</span><span class="n">sc</span><span class="o">.</span><span class="n">titlecase</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;PROD&#39;</span><span class="p">)</span>
+<span class="go">&#39;prd&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;develop&#39;</span><span class="p">)</span>
+<span class="go">&#39;dev&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;Alpha&#39;</span><span class="p">)</span>
+<span class="go">&#39;alp&#39;</span>
+</pre></div>
+</div>
+<p>You can specify transforms that apply to all aliases
+And if you need to provide an alias to a keyword, just use a dictionary.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s1">&#39;transforms&#39;</span><span class="p">:</span> <span class="s1">&#39;etl&#39;</span><span class="p">})</span> 
+<span class="go">AliasResolver(aliases=[...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">identify</span><span class="p">(</span><span class="s1">&#39;etl&#39;</span><span class="p">)</span>
+<span class="go">&#39;transforms&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="module-rym.alias">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-rym.alias" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.alias.Alias">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">Alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">identity:</span> <span class="pre">~typing.Hashable,</span> <span class="pre">aliases:</span> <span class="pre">~typing.Iterable[~typing.Hashable],</span> <span class="pre">transforms:</span> <span class="pre">~typing.Iterable[~typing.Callable[[~typing.Hashable],</span> <span class="pre">~typing.Hashable]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;,</span> <span class="pre">strict:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">logger:</span> <span class="pre">~logging.Logger</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.alias.Alias" title="Link to this definition"></a></dt>
+<dd><p>Simple name lookup.</p>
+<ul class="simple">
+<li><p>Provides basic name lookup.</p></li>
+<li><dl class="simple">
+<dt>Support for enumerating common (or custom) variations, including</dt><dd><p>upper and lower case or (de)essing.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.alias.Alias.identity">
+<span class="sig-name descname"><span class="pre">identity</span></span><a class="headerlink" href="#rym.alias.Alias.identity" title="Link to this definition"></a></dt>
+<dd><p>The “true name” of the alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hashable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.alias.Alias.aliases">
+<span class="sig-name descname"><span class="pre">aliases</span></span><a class="headerlink" href="#rym.alias.Alias.aliases" title="Link to this definition"></a></dt>
+<dd><p>An iterable of names to alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterable[Hashable]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rym.alias.Alias.transforms">
+<span class="sig-name descname"><span class="pre">transforms</span></span><a class="headerlink" href="#rym.alias.Alias.transforms" title="Link to this definition"></a></dt>
+<dd><p>An iterable of functions to apply to each alias.
+Each function should take one string and return one string.
+Default: Upper and lower case of each alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterable[Callable[[Hashable], Hashable]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Alias.add_alias">
+<span class="sig-name descname"><span class="pre">add_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#rym.alias.Alias.add_alias" title="Link to this definition"></a></dt>
+<dd><p>Add given alias to lookup, including transformed names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Alias.add_transform">
+<span class="sig-name descname"><span class="pre">add_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#rym.alias.Alias.add_transform" title="Link to this definition"></a></dt>
+<dd><p>Add given transform and update alias lookup.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Alias.all_names">
+<span class="sig-name descname"><span class="pre">all_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_sorted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.alias.Alias.all_names" title="Link to this definition"></a></dt>
+<dd><p>Return all known aliases and transformations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_sorted</strong> – Inject sorting function. Uses rym.alias.safesorted by default.</p></li>
+<li><p><strong>**kwargs</strong> – Keywords for “sorted”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Alias.identify">
+<span class="sig-name descname"><span class="pre">identify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#rym.alias.Alias.identify" title="Link to this definition"></a></dt>
+<dd><p>Return identity for the given alias value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Alias to match.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Identity for the given alias.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AliasError</strong><strong> (</strong><strong>KeyError</strong><strong>) </strong><strong>if unknown alias given.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Alias.set_transforms">
+<span class="sig-name descname"><span class="pre">set_transforms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#rym.alias.Alias.set_transforms" title="Link to this definition"></a></dt>
+<dd><p>Replace current transforms and update lookup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Iterable of callables. None to clear  current.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.alias.AliasResolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">AliasResolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rym.alias.Alias" title="rym.alias._alias.Alias"><span class="pre">Alias</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.alias.AliasResolver" title="Link to this definition"></a></dt>
+<dd><p>Group of aliases.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.AliasResolver.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/rym-py/rym-py/rym-alias/rym/alias/_aliasresolver.py'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_resolver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a></span></span><a class="headerlink" href="#rym.alias.AliasResolver.add" title="Link to this definition"></a></dt>
+<dd><p>Add aliases to self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.AliasResolver.build">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/rym-py/rym-py/rym-alias/rym/alias/_aliasresolver.py'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_resolver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a></span></span><a class="headerlink" href="#rym.alias.AliasResolver.build" title="Link to this definition"></a></dt>
+<dd><p>Build aliases to resolve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – Supported formats as positional arguments</p></li>
+<li><p><strong>strict</strong> – If true, will raise if collisions detected.</p></li>
+<li><p><strong>transforms</strong> – Optional transforms to apply to all aliases.
+If given, will replace existing transforms on each alias.
+Use ‘None’ to disable all transformations</p></li>
+<li><p><strong>_resolver</strong> – Inject an alias factory.</p></li>
+<li><p><strong>**kwargs</strong> – Supported formats as keyword arguments</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An AliasResolver instance.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>alias_factory</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.AliasResolver.find_collisions">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_collisions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rym.alias.Alias" title="rym.alias._alias.Alias"><span class="pre">Alias</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.alias.AliasResolver.find_collisions" title="Link to this definition"></a></dt>
+<dd><p>Check for alias collisions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.AliasResolver.identify">
+<span class="sig-name descname"><span class="pre">identify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/rym-py/rym-py/rym-alias/rym/alias/_aliasresolver.py'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#rym.alias.AliasResolver.identify" title="Link to this definition"></a></dt>
+<dd><p>Return identity for the given alias value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Alias to match.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Identity for the given alias.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AliasError</strong><strong> (</strong><strong>KeyError</strong><strong>) </strong><strong>if unknown alias given.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.alias.Coercer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">Coercer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explicit:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">coerce_explicit&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implicit:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">coerce_implicit&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger:</span> <span class="pre">~logging.Logger</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.alias.Coercer" title="Link to this definition"></a></dt>
+<dd><p>Data type converter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Coercer.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/rym-py/rym-py/rym-alias/rym/alias/_coerce.py'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#rym.alias.Coercer.coerce" title="Link to this definition"></a></dt>
+<dd><p>Coerce given value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – Thing to coerce.</p></li>
+<li><p><strong>type</strong> – Optional coercion type if known</p></li>
+<li><p><strong>logger</strong> – Optional logger (easier for testing)</p></li>
+<li><p><strong>**kwargs</strong> – Passed to coercion functions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>coerce_explicit
+coerce_implicit</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Coercer.explicit">
+<span class="sig-name descname"><span class="pre">explicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_safe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_resolve_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#rym.alias.Coercer.explicit" title="Link to this definition"></a></dt>
+<dd><p>Coerce given value to given type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Name, alias or callable</p></li>
+<li><p><strong>value</strong> – Thing to coerce</p></li>
+<li><p><strong>use_safe</strong> – If True, will perform safe coercions where possible.</p></li>
+<li><p><strong>**kwargs</strong> – Passed to converter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Coerced value.</p>
+</dd>
+</dl>
+<p>Raises:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.Coercer.implicit">
+<span class="sig-name descname"><span class="pre">implicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#rym.alias.Coercer.implicit" title="Link to this definition"></a></dt>
+<dd><p>Naively detect type and convert.</p>
+<p>Implicit conversion assumes you’ve provided a string.
+If not a string, we’ll try an alias lookup before returning as is.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – The thing to convert.</p></li>
+<li><p><strong>alias</strong> – An AliasResolver</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted value.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>InvalidConversionError</strong><strong> (</strong><strong>ValueError</strong><strong>) </strong><strong>if unable to convert.</strong> – </p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>converter_names(…)</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="rym.alias.CoercionError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">CoercionError</span></span><a class="headerlink" href="#rym.alias.CoercionError" title="Link to this definition"></a></dt>
+<dd><p>Raise if unable to coerce given value to specific type.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rym.alias.FrozenAlias">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">FrozenAlias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Hashable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_lookup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rym.alias.FrozenAlias" title="Link to this definition"></a></dt>
+<dd><p>Hashable Alias.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rym.alias.FrozenAlias.all_names">
+<span class="sig-name descname"><span class="pre">all_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_sorted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.alias.FrozenAlias.all_names" title="Link to this definition"></a></dt>
+<dd><p>Return all known aliases and transformations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_sorted</strong> – Inject sorting function. Uses rym.alias.safesorted by default.</p></li>
+<li><p><strong>**kwargs</strong> – Keywords for “sorted”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="rym.alias.InvalidConverterError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">InvalidConverterError</span></span><a class="headerlink" href="#rym.alias.InvalidConverterError" title="Link to this definition"></a></dt>
+<dd><p>Raise if unsupported conversion requested.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.coerce_explicit">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">coerce_explicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_safe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_resolve_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#rym.alias.coerce_explicit" title="Link to this definition"></a></dt>
+<dd><p>Coerce given value to given type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Name, alias or callable</p></li>
+<li><p><strong>value</strong> – Thing to coerce</p></li>
+<li><p><strong>use_safe</strong> – If True, will perform safe coercions where possible.</p></li>
+<li><p><strong>**kwargs</strong> – Passed to converter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Coerced value.</p>
+</dd>
+</dl>
+<p>Raises:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.coerce_implicit">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">coerce_implicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#rym.alias.coerce_implicit" title="Link to this definition"></a></dt>
+<dd><p>Naively detect type and convert.</p>
+<p>Implicit conversion assumes you’ve provided a string.
+If not a string, we’ll try an alias lookup before returning as is.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – The thing to convert.</p></li>
+<li><p><strong>alias</strong> – An AliasResolver</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted value.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>InvalidConversionError</strong><strong> (</strong><strong>ValueError</strong><strong>) </strong><strong>if unable to convert.</strong> – </p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>converter_names(…)</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.get_default_coercer">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">get_default_coercer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#rym.alias.Coercer" title="rym.alias._coerce.Coercer"><span class="pre">Coercer</span></a></span></span><a class="headerlink" href="#rym.alias.get_default_coercer" title="Link to this definition"></a></dt>
+<dd><p>Return an instance of the default coercer.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.resolve_aliases">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">resolve_aliases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'/home/runner/work/rym-py/rym-py/rym-alias/rym/alias/_aliasresolver.py'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rym.alias.Alias" title="rym.alias._alias.Alias"><span class="pre">Alias</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.alias.resolve_aliases" title="Link to this definition"></a></dt>
+<dd><p>Build aliases from multiple supported formats.</p>
+<dl class="simple">
+<dt>Supported Formats:</dt><dd><ul class="simple">
+<li><p>Alias instances</p></li>
+<li><dl class="simple">
+<dt>Alias keywords</dt><dd><p>e.g., {‘identity’: ‘foo’, ‘aliases’: ‘bar’, ‘transform’: ‘upper’}</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Alias mapping (does not support transform definition)</dt><dd><p>e.g., {‘foo’: [‘bar’]}</p>
+</dd>
+</dl>
+</li>
+<li><p>None</p></li>
+<li><p>Iterable of supported format</p></li>
+<li><dl class="simple">
+<dt>Encoding of supported format</dt><dd><ul>
+<li><p>May be string (json only)</p></li>
+<li><p>May be file path (json, toml, yaml)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>NOTE: TOML requires a root object (not an array)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> – Supported formats as positional arguments</p></li>
+<li><p><strong>transforms</strong> – Optional transforms to apply to all aliases.
+Use ‘None’ to disable.</p></li>
+<li><p><strong>**kwargs</strong> – Supported formats as keyword arguments</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterable of Alias instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.resolve_type">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">resolve_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_safe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_resolver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_safe_resolver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#rym.alias.AliasResolver" title="rym.alias._aliasresolver.AliasResolver"><span class="pre">AliasResolver</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span></span></span><a class="headerlink" href="#rym.alias.resolve_type" title="Link to this definition"></a></dt>
+<dd><p>Return callable for given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Alias or callable</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Callable
+NOTE: If given value is callable, it will be returned as is.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>InvalidConverterError if unknown converter requested.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.resolve_variations">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">resolve_variations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#rym.alias.resolve_variations" title="Link to this definition"></a></dt>
+<dd><p>Resolve given value into callables.</p>
+<dl class="simple">
+<dt>Supported:</dt><dd><ul class="simple">
+<li><p>string names (see rym.alias.variation)</p></li>
+<li><p>callables (should take and return a single string)</p></li>
+<li><p>iterables of either of the others</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – One of the supported input.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterable of resolved variation callables.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError for invalid input.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rym.alias.safesorted">
+<span class="sig-prename descclassname"><span class="pre">rym.alias.</span></span><span class="sig-name descname"><span class="pre">safesorted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span></span></span><a class="headerlink" href="#rym.alias.safesorted" title="Link to this definition"></a></dt>
+<dd><p>Return a new sorted list from items in iterable.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to rym-py’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rym-lpath.html" class="btn btn-neutral float-right" title="rym-lpath" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Stephen Bush.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
